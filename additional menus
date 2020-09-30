@@ -1,4 +1,4 @@
-// add second menu
+// add second menu in themes function.php
 if ( ! function_exists( 'xyz_register_other_navigation_menus' ) ) {
 
 // Register Navigation Menus
@@ -33,3 +33,22 @@ function xyz_genesis_secondary_nav() {
 
 }
 
+
+ODER
+
+function register_additional_genesis_menus() {
+
+register_nav_menu( 'third-menu' ,
+__( 'Third Navigation Menu' ));
+}
+add_action( 'init', 'register_additional_genesis_menus' );
+
+add_action( 'genesis_after_header', 'add_third_nav' ); 
+
+function add_third_nav() {
+
+wp_nav_menu( array( 
+'theme_location' => 'third-menu', 
+'container_class' => 'genesis-nav-menu' ) );
+}
+https://wpsites.net/web-design/adding-additional-nav-menus-in-genesis/
