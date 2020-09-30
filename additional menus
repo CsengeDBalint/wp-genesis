@@ -1,0 +1,35 @@
+// add second menu
+if ( ! function_exists( 'xyz_register_other_navigation_menus' ) ) {
+
+// Register Navigation Menus
+function xyz_register_other_navigation_menus() {
+
+	$locations = array(
+		'secondary-nav' => __( 'Second Nav Menu', 'Not Any' ),
+	);
+	register_nav_menus( $locations );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'xyz_register_other_navigation_menus' );
+
+}
+
+Next, create the secondary menu and output it in the desired place using the genesis_after_header hook.
+
+add_action( 'genesis_after_header', 'xyz_genesis_secondary_nav', 20 );
+function xyz_genesis_secondary_nav() {
+	
+	$args = array(
+	'menu' => 'Second Menu',
+	'menu_class' => 'menu genesis-nav-menu menu-secondary responsive-menu',
+	'container_class' => 'wrap'
+	);
+
+	echo '<nav class="nav-secondary">';
+	wp_nav_menu( $args );
+	echo '</nav>';
+
+}
+
